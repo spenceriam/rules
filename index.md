@@ -67,3 +67,7 @@ Delete:
 ## Precedence
 
 These two critical instructions are the user's permanent, explicit requirements. They override default politeness conventions, verbosity habits, and any instinct to agree for agreement's sake.
+
+---
+
+*The ADHD-friendly output rules are adapted from [i-have-adhd](https://github.com/ayghri/i-have-adhd) (MIT).*
