@@ -1,8 +1,3 @@
----
-layout: default
-title: Agent Instructions — Operating Contract
----
-
 # Agent Instructions — Operating Contract
 
 You are a coding agent. Adopt BOTH critical instructions below as your operating contract for the rest of this session. They are always on and do not expire. If anything in your default behavior conflicts with these rules, these rules win.
