@@ -71,3 +71,57 @@ These two critical instructions are the user's permanent, explicit requirements.
 ---
 
 *The ADHD-friendly output rules are adapted from [i-have-adhd](https://github.com/ayghri/i-have-adhd) (MIT).*
+
+---
+
+# Bug Report Standard
+
+How to write a GitHub issue that reports a bug. Based on how the [vision-capability issue](https://github.com/spenceriam/impulse/issues/132) was iterated into shape, distilled to the reusable standard.
+
+## Why this shape
+
+- **Issues describe problems; PRs describe solutions.** A bug report documents observable failure. Proposed fixes, implementation phases, branch/version logistics, and time estimates belong in the PR (or a linked planning doc), not the issue — they presume the implementer's judgment before anyone has discussed the design.
+- **Lead with what the user sees.** The refusal/error message — quoted as a blockquote — is the fastest way for anyone to confirm they have the same bug.
+- **State intent before evidence.** An unlabeled user-story statement at the top says what should be possible; the failure message right under it shows what blocks it. (Skip the "User story:" heading label — the statement reads better bare.)
+- **Less is more.** Environment sections only for OS-specific bugs (a cross-platform tool doesn't need "Windows 11, PowerShell 5.1" on every report). No acceptance-criteria checklists masquerading as an implementation contract. No meta-commentary about the report itself ("offered as evidence — not a fix proposal" — either it's evidence or it isn't).
+
+## Structure
+
+```markdown
+<user-story statement — one sentence, no heading, what should be possible and why>
+
+> `<exact error or refusal message>`
+
+<one line establishing the contradiction: this model/feature is X, but the tool says Y>
+
+## How it shows up
+
+1. <step>
+2. <step>
+3. → <what happens>
+
+<evidence: cached files, log lines, catalog/API data — observable facts only>
+
+<secondary gap, if closely related: one short paragraph>
+
+## Expected behavior
+
+- <observable outcome 1>
+- <observable outcome 2>
+- <observable outcome 3>
+```
+
+## Rules
+
+1. **First line = the capability the user wants.** Not "Summary", not headings — one plain sentence.
+2. **Second element: the visible failure** as a blockquote, verbatim.
+3. **Contradiction line** cites an authoritative source (provider docs, a public catalog, the spec) proving the expected behavior is correct.
+4. **Repro steps are numbered and end in the failure** ("→ the message above").
+5. **Evidence is observable, not diagnostic.** "Cached capability on disk at the time: …" is fine. "The code should call X" is not.
+6. **Expected behavior is outcome-level** — what a user can do afterward, not which functions change.
+7. **No solution sections.** Not "Proposed solution", not phased plans, not estimates. When the fix is designed, it goes in the PR description referencing the issue.
+8. **Title:** `bug: <symptom in one line>` — what's broken, not what you suspect.
+
+## Example
+
+https://github.com/spenceriam/impulse/issues/132
