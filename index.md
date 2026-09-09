@@ -125,3 +125,39 @@ How to write a GitHub issue that reports a bug. Based on how the [vision-capabil
 ## Example
 
 https://github.com/spenceriam/impulse/issues/132
+
+---
+
+# Draft PR Standard
+
+How an agent opens a pull request. Every agent-created PR is a draft and stays a draft until the user explicitly says to merge or mark it ready.
+
+## Why this shape
+
+- **Draft is the safe default.** Review happens before merge, every time — no accidental merges from an autonomous step.
+- **Three sections are enough.** What changed, why it had to change, and what it affects. Anything more is narration the reviewer didn't ask for.
+- **CI carries verification.** Test output, logs, and checklists don't belong in the description — CI checks are the source of truth.
+
+## Structure
+
+```markdown
+## What changed
+
+<1-5 bullets: files, behavior, or API surface touched>
+
+## Why it needed to change
+
+<one short paragraph: the problem or request that forced it, link the issue if there is one>
+
+## How it impacts
+
+<1-3 bullets: who or what is affected — users, other features, migrations, breaking changes; "No impact beyond X" if none>
+```
+
+## Rules
+
+1. **Always draft.** Open with `gh pr create --draft`. No exceptions for agent-created PRs.
+2. **Never merge without an explicit user command.** Not `gh pr merge`, not `gh pr ready`, not a direct push-merge to main. "Fix X" or "open a PR" is not permission to merge — only a direct order in the current session counts ("merge it", "mark ready", "publish").
+3. **Exactly these three sections.** `What changed`, `Why it needed to change`, `How it impacts` — no test-results sections, no implementation diary, no estimates.
+4. **Short entries.** Bullets over paragraphs. If a section has nothing to say, write `None.` — don't pad it.
+5. **Link, don't paste.** Reference the issue (`Fixes #NNN`) and let CI show verification. No pasted logs or transcripts.
