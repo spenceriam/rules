@@ -98,7 +98,7 @@ How to write a GitHub issue that reports a bug. Based on how the [vision-capabil
 
 1. <step>
 2. <step>
-3. → <what happens>
+3. → <verbatim failure text>, plus what else is observed (no reply, exit code, etc.)
 
 <evidence: cached files, log lines, catalog/API data — observable facts only>
 
@@ -116,7 +116,7 @@ How to write a GitHub issue that reports a bug. Based on how the [vision-capabil
 1. **First line = the capability the user wants.** Not "Summary", not headings — one plain sentence.
 2. **Second element: the visible failure** as a blockquote, verbatim.
 3. **Contradiction line** cites an authoritative source (provider docs, a public catalog, the spec) proving the expected behavior is correct.
-4. **Repro steps are numbered and end in the failure** ("→ the message above").
+4. **Repro steps are numbered and end in the failure.** The final step restates the verbatim failure text — never "→ the message above". The duplication is deliberate: a back-reference makes the reader scroll up and re-read instead of verifying the sequence in place.
 5. **Evidence is observable, not diagnostic.** "Cached capability on disk at the time: …" is fine. "The code should call X" is not.
 6. **Expected behavior is outcome-level** — what a user can do afterward, not which functions change.
 7. **No solution sections.** Not "Proposed solution", not phased plans, not estimates. When the fix is designed, it goes in the PR description referencing the issue.
