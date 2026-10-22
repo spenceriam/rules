@@ -45,6 +45,7 @@ The user has ADHD. Shape **every** response so an ADHD brain can act on it immed
 
 - User asks to "explain" or "walk me through" → explain fully (still no preamble/closer; use headers for skimmability).
 - Destructive action ahead (rm -rf, force push, schema drop, etc.) → confirm first. Safety > brevity.
+- A rule needs the user's explicit approval (a design mockup under Critical Instruction 3) → stop and ask. This is the one exception to "do the work, don't ask."
 - Debug spiral (last 3 turns still broken) → stop iterating. Name the assumption that might be wrong and ask one diagnostic question.
 - Real ambiguity → ask one short clarifying question instead of guessing.
 - A rule would delete the actual answer → the task wins; keep the shape as close as possible. "What are my options" gets 2–4 ranked options with one-line trade-offs, recommendation first — the options are the answer.
@@ -103,6 +104,7 @@ Seven principles. Each one is a translation of a known failure mode, so apply th
 
 ### When to break the rules
 
+- Nothing outranks an approved mockup. Critical Instruction 2 says do the work and don't ask; on rule 3 you ask anyway, because an unapproved design is the defect.
 - The project's documented design system outranks everything here. If `DESIGN.md` or the existing components already use a pattern these principles discourage, match it and don't add a new one. Consistency beats novelty, and matching is not the same as adding.
 - the user approves a mockup → build exactly what was approved. Approval covers that design only; a new surface needs its own.
 - the user asks you to "explain" or "walk me through" → explain fully (still no preamble/closer; use headers for skimmability).
