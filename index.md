@@ -72,25 +72,42 @@ Design is a decision, not decoration. These rules apply to **every UI you build 
 
 1. **Cut taglines, helper text and secondary labels.** If a screen needs them to make sense, the layout is wrong → fix the layout. Never patch a broken hierarchy with explanatory text.
 2. **Make the best decision that elevates all three experiences.** User experience (UX), developer experience (DX) and agent experience (AX) - always, without breaking anything. When two options trade off, take the one that lifts the weakest of the three.
-3. **No eyebrows, no AI-slop highlights, no rounded UI** unless you run a design mockup against the user and get explicit approval first.
+3. **No eyebrows, no AI-slop highlights, no rounded UI** unless you run a design mockup against the user and get explicit approval first. *Eyebrow* = the small kicker label above a heading. *AI-slop highlights* = gradient text, glow, glass, halos, sparkle emoji. *Rounded UI* = pill buttons, fully rounded cards, oversized radii.
 
-### What rule 3 means
+### Design principles
 
-- **Eyebrows** - the small kicker/overline label sitting above a heading ("DASHBOARD", "STEP 2"). Use a plain heading instead.
-- **AI-slop highlights** - gradient text, purple/blue glow, glassmorphism, glass cards, oversized drop shadows, glowing borders, radial halos, sparkle emoji. Use flat color and real hierarchy instead.
-- **Rounded UI** - pill buttons, fully rounded cards, oversized `border-radius`. Use a small radius or square corners.
-- **Mockup approval** - render the proposed design, show it to the user, and wait for an explicit "yes". An approved mockup covers that design only; a new surface needs its own approval.
+Seven principles. Each one is a translation of a known failure mode, so apply the principle rather than a list of banned patterns - a pattern nobody wrote down still gets caught by the principle behind it. Translated from [Impeccable](https://impeccable.style/slop/) (Apache-2.0).
 
-The full catalog of patterns to avoid - visual details, typography, color, layout, motion, copy, imagery - is the **Design Anti-Slop Standard**, appended to this page. Read it before building or changing any UI. Its `slop` rules need a mockup and approval; its `quality` rules are defects - fix them without asking.
+1. **Decoration must not compete with the task.** If an element carries no information, no hierarchy, and no state, remove it. Contrast, spacing, and type size should do the work that glow, glass, and gradient are doing.
+   *Rules out:* decorative grid backgrounds, glass panels, side-tab accent borders, colored stripes on rounded cards, hairline borders paired with wide shadows, repeating gradient stripes, radial halos, glow in dark mode, gradient text, blurred spotlights, oversized icon tiles, rough or placeholder illustrations, jagged image masks, decorative blinking cursors, pulsing status dots, auto-scrolling marquees.
+2. **One thing carries the hierarchy.** When type size already establishes rank, do not also add weight, color, a badge above it, an icon tile, or a second label. Two things competing for attention means the user reads neither.
+   *Rules out:* flat type hierarchy, badges above headlines, labels above headings (eyebrows), icon tiles above headings, one typeface for the whole page, oversized hero headlines, identical card grids, headings crowding the block above them, crushed letter spacing, headings that end on a stub line.
+3. **Cut, don't patch.** When a screen does not make sense, the layout is wrong. Adding a helper line, a tagline, a badge, or a caption on top hides the failure instead of fixing it. Remove the explanation and fix the structure it was covering.
+   *Rules out:* taglines, helper text, secondary labels, several explanations of the same field, the same label repeated in one card, tiny numbered section labels, forced contrast lines ("Not a feature. A platform.").
+4. **The content sets the layout, not the template.** Three things do not become a three-column grid because that is the shape a template ships. If the content does not fit the shape, change the shape - group differently, break the grid, or use a table.
+   *Rules out:* copy-paste hero, metric, and feature layouts, identical card grids, equal gaps between unrelated groups, cards nested in cards, three columns of settings crammed into a modal, lopsided opening columns, cards flush against the scroller edge, text pressed against a button or card edge, body text running to the screen edge.
+5. **Legibility is the floor, not the ceiling.** Contrast, size, line height, measure, and color are functional, not style. Meet WCAG AA (4.5:1 body, 3:1 large), body text around 16px, line height around 1.5, measure 65-75 characters. Then make it beautiful. A screen that is beautiful and unreadable is a failed screen.
+   *Rules out:* low-contrast text, gray on a colored surface, tiny body or interface text, tight line height, over-long lines, a paragraph ending on a single word, justified text, wide letter spacing on body text, all-caps body text, cream and beige as a default palette, purple and cyan as a default palette.
+6. **Say the specific thing, in this product's voice.** Replace the claim with the fact: "supercharge your workflow" says nothing, "syncs 3,000 rows in 40 seconds" says something. Name what is ineffective instead of calling it theater. Pick a typeface and a pitch that belong to this product, not to a generic template.
+   *Rules out:* generic marketing claims, forced contrast, calling things "theater", an em-dash in every sentence, interchangeable product pitches, Inter or Geist as a default, the italic serif display headline as a default.
+7. **Motion means something.** Movement signals that something changed or is live. If nothing changed, nothing moves. Content must work when the animation does not run.
+   *Rules out:* pulsing status dots, bouncing dialogs, elastic easing on routine actions, auto-scrolling marquees, decorative blinking cursors, content hidden behind a failed entrance animation.
+
+### Before you present it
+
+1. Does it work? No console errors, no broken or empty images, nothing overlapping readable text, nothing clipped or overflowing its container, no content waiting on an animation that may not run, heading levels in order (h2 under h1, h3 under h2).
+2. Can you say what every element does? If not, remove it.
+3. Does each level of hierarchy have one source, or three?
+4. Could you delete a label without losing meaning? Delete it.
+5. Is anything moving, glowing, or rounded because it looked right rather than because it did something?
 
 ### When to break the rules
 
-- The existing design system already uses one of these patterns → match it and don't add a new one. Consistency beats novelty, and matching is not the same as adding.
-- The user approves a mockup → build exactly what was approved.
-- The user asks you to "explain" or "walk me through" → explain fully (still no preamble/closer; use headers for skimmability).
+- The project's documented design system outranks everything here. If `DESIGN.md` or the existing components already use a pattern these principles discourage, match it and don't add a new one. Consistency beats novelty, and matching is not the same as adding.
+- the user approves a mockup → build exactly what was approved. Approval covers that design only; a new surface needs its own.
+- the user asks you to "explain" or "walk me through" → explain fully (still no preamble/closer; use headers for skimmability).
 - A rule would delete the actual answer → the task wins; keep the shape as close as possible.
 - A rule fights the harness → inside an agent harness the system prompt outranks these rules: announce a tool call when the harness requires it, do the work instead of asking "want me to." The constraint wins; the shape stays.
-
 ---
 
 ## Precedence
@@ -100,178 +117,6 @@ These three critical instructions are the user's permanent, explicit requirement
 ---
 
 *The ADHD-friendly output rules are adapted from [i-have-adhd](https://github.com/ayghri/i-have-adhd) (MIT).*
-
----
-
-# Design Anti-Slop Standard
-
-How an agent builds UI without shipping the AI-generated look, and how it checks its own work. The catalog is adapted from [Impeccable](https://impeccable.style/slop/) (Apache-2.0).
-
-## Why this shape
-
-- **The slop look is a default, not a choice.** Models reach for purple gradients, glass panels, rounded cards, eyebrow labels, and identical feature grids because those patterns dominate their training data. Landing on one is not a verdict on the product.
-- **Slop is usually a symptom.** A card with a 24px radius and a colored side-stripe is typically a layout that has no job for the content. Changing the pattern without changing the cause just produces a different-looking symptom.
-- **Slop is cheap to detect and expensive to spot by eye.** A detector scan finds the known patterns in seconds. Reviewing for "does this look AI-generated" does not.
-- **Quality defects are not aesthetic opinions.** Low contrast, cramped padding, overflowing text, a broken image, and a JavaScript error on load are defects. They get fixed, not reviewed.
-
-## When this applies
-
-- Any UI you build, change, or review - web, desktop, or mobile.
-- Any written output, for the copy rules (redundant text, generic marketing claims, em-dash overuse).
-
-## The workflow
-
-Four steps, in order.
-
-### 1. Look for a design system
-
-Check the project root for `DESIGN.md`, and `.impeccable/design.json` beside it. If either exists, the project has a documented design system - fonts, colors, corner radii, type sizes - and **that record wins over anything in this standard**.
-
-If neither exists and you are building UI in this project, write `DESIGN.md` before you write components. It is what makes the rest of this standard checkable, and the only thing that lets a reviewer tell "intentional" from "slop".
-
-### 2. Scan
-
-```
-npx impeccable detect src/
-npx impeccable detect http://localhost:3000
-```
-
-Source scans inspect UI code and styles. URL scans open the page in a browser, where checks can use the rendered layout - use them whenever spacing, overflow, or overlap is in question.
-
-### 3. Fix by category
-
-Exit code `0` means no primary findings. `2` means primary findings - fix them. `1` means a target could not be scanned; treat that as a failure, not a pass.
-
-Fix in this order:
-
-1. Correctness - JavaScript errors, content stuck hidden, broken images, clipped menus.
-2. Readability - contrast, text size, line height, line length.
-3. Structure - nested cards, identical grids, spacing.
-4. Decoration - gradients, glows, radii, borders, motion.
-
-Decoration last on purpose. A gradient on a card whose layout is broken is a card that is still broken.
-
-### 4. Record intentional choices
-
-A deliberate pattern is not slop. Record it so the next scan does not flag it and nobody "fixes" it later:
-
-```
-npx impeccable ignores add-value overused-font Inter --reason "Brand font"
-```
-
-Record the specific value where you can. A blanket ignore for a whole rule hides real problems.
-
-## The catalog
-
-Rules marked **slop** are off-limits until you have run a design mockup against the owner and they have said yes. Rules marked **quality** are defects - fix them, no sign-off needed. Rules marked **system** fire only when the project has a documented design system, and are resolved by using it.
-
-### Your design system
-
-- **Font outside DESIGN.md** _(system)_ - a font that is not in the documented type system. → Use an approved font, or add it to the record if the addition is intentional.
-- **Color outside DESIGN.md** _(system)_ - a color outside the documented palette. → Use a palette color, or add it to the record.
-- **Radius outside DESIGN.md** _(system)_ - a corner radius off the documented scale. → Use an existing radius, or add the new shape to the system.
-- **Font size outside DESIGN.md** _(system)_ - a size off the documented type scale. → Use a documented size, or add the step.
-
-### Visual details
-
-- **Decorative grid-line background** _(slop)_ - a grid of lines behind the content that helps nobody. → Keep grids for canvases, maps, and tasks that need measurement.
-- **Glassmorphism everywhere** _(slop)_ - blur, glass cards, and glow borders used as decoration rather than to solve a real layering problem. → Drop the blur. Let background and border do the separating.
-- **Border accent on rounded element** _(slop)_ - a thick colored border on a rounded card competes with the content inside it. → Use a lighter border, or let the background define the card.
-- **Side-tab accent border** _(slop)_ - a colored stripe down the edge of an ordinary card makes it look like an alert. → Remove it unless it carries real status or a real warning.
-- **Hairline border with wide shadow** _(slop)_ - a thin border and a broad shadow both define the same card. → Choose the edge or the shadow, not both.
-- **Repeating-gradient stripes** _(slop)_ - repeating stripes fill empty space with visual noise. → Use a plain surface, or a texture that belongs to the design.
-- **Extreme border-radius on cards** _(slop)_ - large corner radii squeeze the content and make every card look alike. → Reduce the curve to suit the card's size and give its contents room.
-- **Rough SVG illustrations** _(slop)_ - a hastily drawn mascot or scene makes a finished page look unfinished. → Use a well-made illustration or photo, or leave it out.
-
-### Typography
-
-- **Label above a heading** _(slop, quality)_ - the eyebrow. A small kicker above a heading adds a line to read and usually repeats the heading. → Work the useful words into the heading and drop the label.
-- **Badge above the main headline** _(slop)_ - a small pill above the headline looks clickable and competes with the message. → Remove it, or move the useful information into the headline.
-- **Icon tile stacked above heading** _(slop)_ - an icon in a rounded square above a heading is the AI feature-card pattern. → Put the icon beside the heading, or drop its container.
-- **Oversized hero headline** _(slop)_ - a long headline at display size fills the first screen by itself. → Shorten it or reduce the size so the page has room to explain the offer and show what to do next.
-- **Italic serif display headline** _(slop)_ - an oversized italic serif headline is a borrowed editorial shortcut. → Choose a type style that fits the product's character.
-- **Overused font** _(slop)_ - Inter and Geist make unrelated products look alike. → Choose typography for the product's character and reading needs; keep an established brand font when it fits.
-- **Flat type hierarchy** _(slop)_ - headings and body text look too similar to scan. → Separate them by size, weight, or spacing.
-- **Crushed letter spacing** _(slop)_ - letters pushed too close together stop being distinguishable, especially at small sizes. → Loosen the spacing until each character is clear.
-- **Heading with a stub last line** _(slop)_ - a multi-line heading whose last line is one word reads unfinished. → Set `text-wrap: balance` so the lines even out.
-- **Tiny interface text** _(quality)_ - navigation, links, and controls are hard to use when their text is too small. → Increase the size so people can read them without zooming.
-- **One word alone on the last line** _(quality)_ - a paragraph ending on a single word leaves a gap in the column. → Rewrap with `text-wrap: pretty` or adjust the measure.
-- **Single font for everything** _(quality)_ - one family across the whole page reads flat. → Vary size, weight, and spacing before adding a second family.
-- **All-caps body text** _(quality)_ - long passages in capitals are tiring to read. → Use sentence case for body text, and keep uppercase for short labels and headings.
-
-### Color and contrast
-
-- **AI color palette** _(slop)_ - purple gradients and bright cyan on dark backgrounds are the AI defaults. → Build the palette around the product's identity and how people will use it.
-- **Radial-gradient background halo** _(slop)_ - a bright halo on a dark page is a familiar AI background effect. → Remove the glow when it competes with the content or has no role in the design.
-- **Soft spotlight behind content** _(slop)_ - a faint glow behind a section adds emphasis without explaining what matters. → Use spacing, contrast, or a clear heading to guide attention.
-- **Dark mode with glowing accents** _(slop)_ - glowing borders and accents turn a dark interface into a wall of neon. → Keep the dark theme if it suits the product, and reduce the glow so useful information stands out.
-- **Gray text on colored background** _(slop)_ - neutral gray on a colored surface washes out. → Use a darker tint or a light text color, then check contrast against the actual background.
-- **Gradient text** _(quality)_ - a gradient makes color change across a heading or number, usually for decoration alone. → Use one solid color and let size or weight carry the emphasis.
-- **Cream / beige palette** _(quality)_ - cream and beige can become a default substitute for a considered palette. → Keep them when they belong to the product, and choose the rest of the colors with equal care.
-
-### Layout and space
-
-- **Identical card grids** _(slop)_ - repeated icon-heading-text cards give every point the same weight. → Group related ideas and vary the layout when the content needs different treatment.
-- **Nested cards** _(quality)_ - cards inside cards add visual noise and depth around the same content. → Flatten the hierarchy with spacing, typography, and dividers.
-- **Hero metric layout** _(slop)_ - a huge number with a small label and supporting stats is a familiar landing-page template. → Lead with a metric when it helps explain the product, and give it enough context to mean something.
-- **Heading closer to the previous section** _(slop)_ - a heading sits closer to the block above it than to its own content. → Give it more space above than below.
-- **Monotonous spacing** _(slop)_ - equal gaps everywhere make it hard to tell what belongs together. → Keep related items close and leave more space between separate groups.
-- **Tiny numbered section labels** _(quality)_ - small numbers beside headings add clutter when there is no sequence to follow. → Keep numbering for steps or an order that matters.
-- **Cards flush against the scroller edge** _(quality)_ - cards meet the scroller's edge with no room around them. → Add matching space at both ends so the first and last cards have a clear boundary.
-- **Text covered by another element** _(quality)_ - an opaque layer covers readable text. → Move the layer or give the text clear space.
-- **Unbalanced opening columns** _(quality)_ - one opening column extends far below the other, leaving a large gap. → Rebalance the content, or move the longer column below both columns.
-- **Line length too long** _(quality)_ - long lines make it hard to find the start of the next line. → Aim for 65-75 characters, then adjust for the font, content, and screen.
-- **Content overflowing its container** _(quality)_ - content spills outside its container or makes the page scroll sideways. → Let text wrap and elements shrink; use a scrolling region when the content needs one.
-- **Clipped menus and popovers** _(quality)_ - a container cuts off a menu, tooltip, or dropdown that needs to extend beyond it. → Allow the overflow, or render that layer outside the clipping container.
-
-### Motion
-
-- **Pulsing status dot** _(slop)_ - a pulsing dot draws attention even when nothing changes. → Keep static status still, and use motion to signal activity that matters.
-- **Bounce or elastic easing** _(slop)_ - a dialog that bounces or overshoots makes a routine action feel fussy. → Let it settle quickly, and save playful motion for moments that suit the product.
-- **Auto-scrolling marquee** _(slop)_ - auto-scrolling text or logos make people read at the page's pace. → Keep them still, or give people controls to pause and browse.
-- **Decorative blinking cursor** _(slop)_ - a blinking cursor makes ordinary static copy look editable or like a terminal. → Remove it from static copy; keep it where people can type.
-
-### Copy
-
-- **Same text repeated inside one container** _(slop)_ - the same label appears in several slots of one card. → Keep it once, where it matters.
-- **Generic marketing claims** _(slop)_ - words like "supercharge" and "world-class" promise a lot without explaining the product. → Say what people can do and what improves for them.
-- **Forced contrast** _(slop)_ - repeated lines like "Not a feature. A platform." make every point sound like a slogan. → Explain the distinction when it matters, and state the useful information directly.
-- **Em-dash overuse** _(slop)_ - a dash in every sentence is a familiar AI writing habit. → Use a full stop between separate thoughts, and choose other punctuation when it makes the sentence easier to follow.
-- **Calling things "theater"** _(quality)_ - calling something "theater" can replace an explanation with a dismissal. → Name what is ineffective or misleading, and explain why.
-
-### Imagery
-
-- **Placeholder-style illustrations** _(slop)_ - a scene built from generic circles and blocks looks like placeholder art. → Choose imagery that says something specific about the product.
-- **Jagged image masks** _(quality)_ - a jagged mask tries to imitate a torn or organic edge. → Use a prepared cut-out asset for that effect, or choose a clean crop.
-- **Images hidden under overlays** _(quality)_ - a nearly opaque overlay hides the image you added. → Reduce it until the image contributes, or remove an image that serves no purpose.
-- **Broken or placeholder image** _(quality)_ - a missing or empty image source leaves the page unfinished. → Add the intended asset and check that it loads, or remove the image.
-
-### General quality
-
-- **JavaScript errors on load** _(quality)_ - an uncaught error can break controls or hide content. → Fix the error, then confirm the page works before polishing how it looks.
-- **Content stuck waiting to appear** _(quality)_ - content stays hidden when its entrance animation fails to run. → Make it visible by default so people can still use the page if the animation fails.
-- **Cramped padding** _(quality)_ - text pressed against a button or card edge feels cramped. → Add enough padding to separate content from its container, using the project's spacing scale.
-- **Body text touching the page edge** _(quality)_ - paragraphs need space at the sides of the screen. → Add horizontal padding to the content container, and check it at narrow widths.
-- **Low-contrast text** _(quality)_ - text that blends into its background is hard to read. → Meet WCAG AA: at least 4.5:1 for regular text and 3:1 for large text.
-- **Skipped heading level** _(quality)_ - heading levels help screen reader users navigate. → Match them to the page structure: h2 for a section under h1, h3 for a subsection.
-- **Tight line height** _(quality)_ - closely packed lines make paragraphs hard to follow. → Start around 1.5 times the font size, then adjust for the typeface and line length.
-- **Tiny body text** _(quality)_ - small body text makes reading a chore. → Start around 16px, check the actual typeface on a phone and desktop, and keep secondary text comfortably readable too.
-- **Justified text** _(quality)_ - justified paragraphs leave distracting gaps between words. → Align body text to the start of the line, or use hyphenation and check the spacing at each screen size.
-- **Wide letter spacing on body text** _(quality)_ - spreading letters far apart makes paragraphs harder to read. → Stay near the typeface's default spacing, and save wider spacing for short labels.
-
-## Rules
-
-1. **Read the design system first.** If `DESIGN.md` or `.impeccable/design.json` exists, it outranks this standard. If neither exists and you are building UI here, write `DESIGN.md` before you write components.
-2. **Scan before you present.** Run `npx impeccable detect src/` against the source. Run a URL scan against the running page whenever spacing, overflow, or overlap is in question.
-3. **Fix correctness before decoration.** Errors and hidden content first, then readability, then structure, then decoration.
-4. **Slop needs approval.** Any rule marked `slop` is off-limits until you have run a design mockup against the owner and they have said yes. A pattern the project's existing design system already uses is matched, not changed - matching is not the same as adding. An approved mockup covers that design only; a new surface needs its own approval.
-5. **Quality rules are defects.** Fix them. They do not need a mockup or a sign-off.
-6. **Record deliberate choices.** Use `npx impeccable ignores add-value` with a reason, so the next scan does not flag a decision that was intentional.
-7. **Say what you did not check.** If a scan could not run, or a rule needed a judgment you could not make, say so plainly instead of implying the page is clean.
-
-## Example
-
-The [Impeccable antipattern examples](https://impeccable.style/slop/) show each habit in isolation: purple gradients, lazy "cool", lazy "impact", side-tab cards, cardocalypse, copy-paste layouts, Inter everywhere, massive icons, bad contrast, redundant UX writing, modal abuse.
 
 ---
 
