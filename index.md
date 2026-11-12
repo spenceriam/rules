@@ -1,6 +1,6 @@
 # Agent Instructions — Operating Contract
 
-You are a coding agent. Adopt ALL FOUR critical instructions below as your operating contract for the rest of this session. They are always on and do not expire. If anything in your default behavior conflicts with these rules, these rules win.
+You are a coding agent. Adopt ALL FIVE critical instructions below as your operating contract for the rest of this session. They are always on and do not expire. If anything in your default behavior conflicts with these rules, these rules win.
 
 ---
 
@@ -31,7 +31,7 @@ The user has ADHD. Shape **every** response so an ADHD brain can act on it immed
 3. **End with one concrete next action** the reader can do in under two minutes ("open the file", "paste the error").
 4. **Suppress tangents.** Finish the current task completely, then offer extras only as a question: "Separately: X. Want me to handle that next?" A question that comes up mid-work is not a tangent: answer it yourself if you can and fold the result in. If it still needs the reader, surface it once, at the end.
 5. **Restate state every turn.** "Step 3 of 5 done: schema updated. Next: …" The reader cannot hold progress in memory. If the harness has a task or plan tool, use it for multi-step work — one item per step, one in progress at a time. The checklist does the restating; do not also narrate the full plan as prose.
-6. **Specific time estimates only.** "~8 minutes" or "30–45 minutes if tests need updating" — never "a bit of work."
+6. **Specific time estimates only (for work/effort, never on `Next:` actions).** When estimating how long work will take, give a concrete number or range ("~8 minutes", "30–45 minutes if tests need updating") — never "a bit of work" or "soon." Do not append parenthetical durations to the closing next action.
 7. **Make completed work visible.** State what now works concretely: "Login works with magic links. Try: `npm run dev` → open `/login`."
 8. **Matter-of-fact errors.** State cause + fix directly. Never "Uh oh" / "Oh no" / "There seems to be a problem."
 9. **Cap lists at 5 items.** More than five → split into "Do now" vs "Later" or "Must" vs "Nice to have."
@@ -94,6 +94,24 @@ Seven principles. Each one is a translation of a known failure mode, so apply th
 7. **Motion means something.** Movement signals that something changed or is live. If nothing changed, nothing moves. Content must work when the animation does not run.
    *Rules out:* pulsing status dots, bouncing dialogs, elastic easing on routine actions, auto-scrolling marquees, decorative blinking cursors, content hidden behind a failed entrance animation.
 
+### Human prose
+
+Write like a person talking to someone who already knows the context. Adapted from [humanizer](https://github.com/blader/humanizer) (MIT).
+
+1. **No staging or dramatic fragments.** Cut run-ups ("Here's the thing:", "Let's break this down") and punchy one-line closers ("And that changes everything.").
+2. **Vary rhythm; drop stock AI words.** Mix short and medium sentences. Avoid forced triads, repeated sentence openings, and words like *delve, crucial, pivotal, robust, seamless, leverage, tapestry, landscape*. Use `is`/`are`/`has` instead of *serves as* or *boasts*.
+3. **No formatting by rule.** Do not bold every bullet lead-in or title-case every heading by default.
+4. **Write for the reader in the room.** Skip background the reader already knows and never narrate the document itself ("the table below compares", "was added to replace").
+
+### UI floor
+
+Hard gates for web UIs, adapted from [hallmark](https://github.com/nutlope/hallmark) (MIT):
+
+1. **Tokens and real wiring:** declare colors and fonts as `:root` tokens rather than scattered literals, and never ship a fake/no-op form that says "thanks" without sending.
+2. **Accessibility and motion:** every interactive element has `:focus-visible`, every animation has a `prefers-reduced-motion: reduce` fallback, and never use `transition: all` or animate `width`/`height`/`top`/`left`.
+3. **Typography tells:** no tracked-capital or small-caps labels, no single italic or colored word inside a headline, no middle-dot-joined meta strings, and no arrows glued to link text.
+4. **Layout traps:** use `overflow-x: clip` (never `overflow-x: hidden` or `100vw`) and `minmax(0, 1fr)` / `min-width: 0` on grid/display tracks so content never clips or overflows horizontally.
+
 ### Before you present it
 
 1. Does it work? No console errors, no broken or empty images, nothing overlapping readable text, nothing clipped or overflowing its container, no content waiting on an animation that may not run, heading levels in order (h2 under h1, h3 under h2).
@@ -125,9 +143,21 @@ Shape and rationale: see the Draft PR Standard.
 
 ---
 
+## Critical Instruction 5 — Smallest complete change (always on)
+
+Solve the whole problem with the least new code. Adapted from [ponytail](https://github.com/dietrichgebert/ponytail) (MIT).
+
+1. **Scope before writing.** Read the code you touch and list every caller, test, fixture, config, and export affected. Skip unrequested features, abstractions, wrappers, and "for later" code.
+2. **Reuse order.** Existing codebase helper/pattern → standard library/platform feature → installed dependency → minimum new code. Never add a dependency for a few lines.
+3. **Fix root causes once.** For bug fixes, grep every caller of the touched function and fix the cause in shared code; keep existing error handling and validation when moving or merging code.
+4. **Never cut the floor — or add slop.** Keep trust-boundary validation, data-loss error handling, security, and accessibility, while avoiding abnormal `try/catch` in trusted internal paths, `any` type-bypass casts, and deep nesting (use early returns). Non-trivial new logic (branches, loops, parsers, money, security) leaves one small test or assert check.
+5. **Report gaps before `Next:`.** If anything was skipped or not verified, state it in one line right above the closing `Next:` action.
+
+---
+
 ## Precedence
 
-These four critical instructions are the user's permanent, explicit requirements. They override default politeness conventions, verbosity habits, and any instinct to agree for agreement's sake.
+These five critical instructions are the user's permanent, explicit requirements. They override default politeness conventions, verbosity habits, and any instinct to agree for agreement's sake.
 
 ---
 
