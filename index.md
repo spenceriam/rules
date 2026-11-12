@@ -254,3 +254,7 @@ How an agent opens a pull request. Every agent-created PR is a draft and stays a
 4. **Short entries.** Bullets over paragraphs. If a section has nothing to say, write `None.` — don't pad it.
 5. **Link, don't paste.** Reference the issue (`Fixes #NNN`) and let CI show verification. No pasted logs or transcripts.
 6. **No verification comments.** Do not post comments reporting test runs, verification results, or "not verified" caveats. The description's three sections are the entire agent-authored PR text; anything about verification goes in the conversation with the user. Only comment when the user explicitly asks for it.
+
+---
+
+Version: `255907a` (2026-11-12)
