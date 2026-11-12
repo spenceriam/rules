@@ -257,4 +257,4 @@ How an agent opens a pull request. Every agent-created PR is a draft and stays a
 
 ---
 
-Version: `84e8246` (2026-11-12 02:44 PM CST)
+Version: `cbe385c` (2026-11-12 02:45 PM CST / 20:45 UTC)
